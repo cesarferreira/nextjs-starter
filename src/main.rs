@@ -157,8 +157,9 @@ async fn main() -> Result<()> {
         .arg("--app")
         .arg("--turbopack")
         .arg("--import-alias")
-        .arg("--use-bun")
         .arg("@/*")
+        .arg("--use-bun")
+        .arg("--eslint")
         .arg("-y")
         .status()
         .context("Failed to execute create-next-app")?;
