@@ -10,18 +10,17 @@ fi
 PROJECT_NAME=$1
 REPO_URL="https://raw.githubusercontent.com/cesarferreira/nextjs-starter/main"
 
+# Set environment variables for non-interactive mode
+export NEXT_TELEMETRY_DISABLED=1
+
 # Create Next.js app with Bun (non-interactive)
-bunx create-next-app@latest $PROJECT_NAME \
+printf "no\nno" | bunx create-next-app@latest $PROJECT_NAME \
   --ts \
   --tailwind \
   --src-dir \
   --app \
   --turbopack \
-  --no-eslint \
-  --import-alias="@/*" \
-  --use-bun \
-  -y
-  # --no-git \
+  --use-bun
 
 # Download and copy template files
 echo "Downloading template files..."
