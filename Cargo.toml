@@ -1,0 +1,24 @@
+[package]
+name = "nexto"
+version = "0.1.0"
+edition = "2021"
+authors = ["Cesar Ferreira"]
+description = "A CLI tool to create Next.js projects with custom templates"
+license = "MIT"
+repository = "https://github.com/cesarferreira/nextjs-starter"
+keywords = ["nextjs", "cli", "template", "react", "typescript"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "nexto"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.4.11", features = ["derive"] }
+tokio = { version = "1.35.1", features = ["full"] }
+anyhow = "1.0.75"
+colored = "2.0.4"
+reqwest = { version = "0.11.23", features = ["json"] }
+indicatif = "0.17.7"
+regex = "1.10.2"
+tempfile = "3.9.0"

@@ -1,47 +1,76 @@
-# Next.js Starter Template
+# Nexto - Next.js Project Generator
 
-A streamlined Next.js starter template with pre-configured settings and best practices.
+A powerful CLI tool to create Next.js projects with opinionated best practices and configurations.
 
-## Quick Start
+## Features
 
-Create a new Next.js project with this template using:
+- ⚡️ **Next.js 14** with App Router
+- 🎯 **TypeScript** for type safety
+- 🎨 **Tailwind CSS** for styling
+- 📦 **Bun** for faster package management and development
+- 🚀 **Turbopack** for lightning-fast builds
+- 🔄 **GitHub Actions** for CI/CD
+- 📁 **Organized Project Structure** with src directory
+- ⚙️ **Optimized Next.js configuration**
+- 🔒 **Security best practices**
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- [Bun](https://bun.sh) (Required for package management and development)
+- [Rust](https://rustup.rs) (Required for installing the CLI tool)
+
+## Installation
+
+Install the CLI tool globally using:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/cesarferreira/nextjs-starter/main/install.sh | bash -s your-project-name
+cargo install --git https://github.com/cesarferreira/nextjs-starter.git
 ```
 
-Or using wget:
+## Usage
+
+Create a new Next.js project anywhere on your system:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/cesarferreira/nextjs-starter/main/install.sh | bash -s your-project-name
+nexto my-project
 ```
 
-Replace `your-project-name` with your desired project name.
+Replace `my-project` with your desired project name (only letters, numbers, hyphens, and underscores are allowed).
 
-## What's Included
+## Project Structure
 
-- TypeScript configuration
-- Tailwind CSS setup
-- Source directory structure
-- App Router
-- Turbopack
-- Bun package manager
-- GitHub Actions workflow
-- Optimized Next.js configuration
+```
+my-project/
+├── src/
+│   ├── app/           # App Router pages and layouts
+│   ├── components/    # Reusable UI components
+│   ├── lib/          # Utility functions and shared logic
+│   └── styles/       # Global styles and Tailwind config
+├── public/           # Static assets
+├── .github/          # GitHub Actions workflows
+└── next.config.mjs   # Next.js configuration
+```
 
-## Requirements
+## Development
 
-- [Bun](https://bun.sh) installed on your system
-
-## Post Installation
-
-After installation, you can start your development server:
+After creating your project:
 
 ```bash
-cd your-project-name
+cd my-project
 bun dev
 ```
 
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 ## License
 
-MIT License 
+MIT License - feel free to use this template for any project.
+
+## Support
+
+If you find this tool helpful, please consider giving it a star ⭐️ on GitHub. 
