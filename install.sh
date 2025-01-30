@@ -8,6 +8,7 @@ if [ -z "$1" ]; then
 fi
 
 PROJECT_NAME=$1
+REPO_URL="https://raw.githubusercontent.com/cesarferreira/nextjs-starter/main"
 
 # Create Next.js app with Bun
 bunx create-next-app@latest $PROJECT_NAME \
@@ -19,10 +20,11 @@ bunx create-next-app@latest $PROJECT_NAME \
   --import-alias="" \
   --use-bun
 
-# Copy template files
-echo "Copying template files..."
-cp -r template/.github $PROJECT_NAME/
-cp template/next.config.mjs $PROJECT_NAME/
+# Download and copy template files
+echo "Downloading template files..."
+mkdir -p $PROJECT_NAME/.github/workflows
+curl -sSL "$REPO_URL/template/.github/workflows/deploy.yml" -o "$PROJECT_NAME/.github/workflows/deploy.yml"
+curl -sSL "$REPO_URL/template/next.config.mjs" -o "$PROJECT_NAME/next.config.mjs"
 
 echo "✅ Project setup complete! 🚀"
 echo "To get started:"
