@@ -10,15 +10,18 @@ fi
 PROJECT_NAME=$1
 REPO_URL="https://raw.githubusercontent.com/cesarferreira/nextjs-starter/main"
 
-# Create Next.js app with Bun
+# Create Next.js app with Bun (non-interactive)
 bunx create-next-app@latest $PROJECT_NAME \
   --ts \
   --tailwind \
   --src-dir \
   --app \
   --turbopack \
-  --import-alias="" \
-  --use-bun
+  --no-eslint \
+  --import-alias="@/*" \
+  --use-bun \
+  -y
+  # --no-git \
 
 # Download and copy template files
 echo "Downloading template files..."
