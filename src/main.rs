@@ -42,7 +42,14 @@ fn check_bun_installation() -> Result<()> {
     Ok(())
 }
 
-async fn download_template_files(target_dir: &PathBuf) -> Result<()> {
+async fn replace_in_file(path: &PathBuf, from: &str, to: &str) -> Result<()> {
+    let content = fs::read_to_string(path).await?;
+    let new_content = content.replace(from, to);
+    fs::write(path, new_content).await?;
+    Ok(())
+}
+
+async fn download_template_files(target_dir: &PathBuf, project_name: &str) -> Result<()> {
     println!("{}", "📥 Downloading template files...".green());
     
     let pb = ProgressBar::new_spinner();
@@ -123,6 +130,13 @@ async fn download_template_files(target_dir: &PathBuf) -> Result<()> {
         .await
         .context("Failed to copy template files")?;
 
+    // Replace template variables in next.config.mjs
+    let config_path = target_dir.join("next.config.mjs");
+    if config_path.exists() {
+        replace_in_file(&config_path, "{{PROJECT_NAME}}", project_name).await
+            .context("Failed to update project name in next.config.mjs")?;
+    }
+
     pb.finish_with_message("Template files downloaded successfully!");
     
     Ok(())
@@ -159,7 +173,9 @@ async fn main() -> Result<()> {
         .arg("--import-alias")
         .arg("@/*")
         .arg("--use-bun")
-        .arg("--eslint")
+        .arg("--no-eslint")
+        // .arg("--no-git")
+        // .arg("--no-prettier")
         .arg("-y")
         .status()
         .context("Failed to execute create-next-app")?;
@@ -174,7 +190,7 @@ async fn main() -> Result<()> {
     }
 
     // Download and copy template files
-    download_template_files(&project_path)
+    download_template_files(&project_path, &project_name)
         .await
         .context("Failed to setup template files")?;
 
